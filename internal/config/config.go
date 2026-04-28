@@ -26,7 +26,7 @@ func Load() (*Config, error) {
 	}
 
 	var config *Config = &Config{
-		DatabaseURL:  os.Getenv("DATABASE_URL"),
+		DatabaseURL:  os.Getenv("MONGODB_URI"),
 		DatabaseName: os.Getenv("DATABASE_NAME"),
 		Port:         os.Getenv("PORT"),
 	}
