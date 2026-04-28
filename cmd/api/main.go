@@ -5,16 +5,21 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/guutar/todo-app-backend/internal/config"
+	"github.com/guutar/todo-app-backend/internal/database"
 )
 
 func main() {
-	var err error
-
 	// Load ENV Configuration
-	var cfg *config.Config
-	cfg, err = config.Load()
+	cfg, err := config.Load()
 	if err != nil {
 		log.Fatal("Failed to load configuration:", err)
+	}
+
+	// Database Connection
+	// db, err = database.Connect(cfg.DatabaseURL, cfg.DatabaseName)
+	_, err = database.Connect(cfg.DatabaseURL, cfg.DatabaseName)
+	if err != nil {
+		log.Fatal("Failed to connect to database:", err)
 	}
 
 	// Router Initializaion
